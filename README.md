@@ -56,7 +56,7 @@ flask-auth-app/
 ### 1. Clone the repo
 
 ```
-git clone https://github.com/ayushi-gajendra/Flask_Authentication_App.git
+git clone https://github.com/karthik0423/Flask_Authentication_App.git
 cd Flask_Authentication_App
 ```
 
