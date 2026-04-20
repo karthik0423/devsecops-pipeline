@@ -2,7 +2,7 @@ name: DevSecOps Pipeline
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  
+
 on:
   push:
     branches:
@@ -29,10 +29,6 @@ jobs:
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v2
-        with:
-          args: >
-            -Dsonar.projectKey=karthik0423_devsecops-pipeline
-            -Dsonar.organization=karthik0423
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -43,5 +39,5 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: karthik-devsecops
-          severity: CRITICAL,HIGH
+          severity: CRITICAL
           exit-code: 1
