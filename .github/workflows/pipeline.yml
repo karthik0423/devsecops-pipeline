@@ -1,0 +1,32 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Build Docker Image
+      run: docker build -t karthik-devsecops .
+
+    - name: Run Trivy Scan
+      run: |
+        sudo apt-get install -y wget
+        wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.50.0_Linux-64bit.deb
+        sudo dpkg -i trivy_0.50.0_Linux-64bit.deb
+        trivy image karthik-devsecops
